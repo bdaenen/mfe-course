@@ -1,0 +1,14 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from "./App";
+
+export function mount(el) {
+    ReactDOM.render(<App/>, el)
+}
+
+if (process.env.NODE_ENV !== 'production') {
+    const el = document.getElementById('__marketing-dev-root')
+    if (el) {
+        mount(el)
+    }
+}
