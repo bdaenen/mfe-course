@@ -1,5 +1,4 @@
 const { merge } = require('webpack-merge')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const commonWebpackConfig = require('./webpack.common')
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
 const pjs = require('../package.json')
@@ -17,9 +16,6 @@ const devConfig = {
             marketing: 'marketing@http://localhost:8081/remoteEntry.js',
         },
         shared: pjs.dependencies,
-    }), new HtmlWebpackPlugin({
-        template:
-            './public/index.html',
     })],
 }
 

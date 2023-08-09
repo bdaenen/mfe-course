@@ -1,0 +1,20 @@
+stages:
+    - build
+
+build_container:
+    stage: build
+    image: docker.io/node:18.17.0-alpine3.18
+    rules:
+        - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+          when: never
+        - if: $CI_COMMIT_REF_SLUG == "main"
+          changes:
+            - packages/container/*
+          when: always
+    script:
+        - cd packages/container && npm install
+        - cd packages/container && npm run build
+    artifacts:
+        paths:
+            - './packages/container/dist'
+            - './packages/marketing/dist'
