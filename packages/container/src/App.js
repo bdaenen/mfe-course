@@ -5,7 +5,7 @@ import MarketingAppWrapper from './components/MarketingApp'
 export default function App() {
     return (
         <div>
-            <h1>Cool!</h1>
+            <h1>Trigger github actions!</h1>
             <hr/>
             <MarketingAppWrapper />
         </div>
