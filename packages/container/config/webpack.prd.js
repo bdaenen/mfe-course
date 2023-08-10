@@ -15,7 +15,7 @@ const prdConfig = {
         new ModuleFederationPlugin({
             name: 'MFP container',
             remotes: {
-                marketing: `marketing@${domain}/marketing/remoteEntry.js`,
+                marketing: `marketing@${domain}/marketing/latest/remoteEntry.js`,
             },
             shared: pjs.dependencies,
         })
