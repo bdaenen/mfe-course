@@ -1,13 +1,15 @@
 import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
 import MarketingAppWrapper from './components/MarketingApp'
-
+import Header from './components/Header'
 
 export default function App() {
     return (
-        <div>
-            <h1>Retrigger github actions!</h1>
-            <hr/>
-            <MarketingAppWrapper />
-        </div>
+        <BrowserRouter>
+            <div>
+                <Header />
+                <MarketingAppWrapper />
+            </div>
+        </BrowserRouter>
     )
 }
