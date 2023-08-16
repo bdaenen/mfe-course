@@ -4,14 +4,21 @@ const commonWebpackConfig = require('./webpack.common')
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
 const pjs = require('../package.json')
 
+const devPort = 8081
+const devHost = 'http://localhost'
+
 const devConfig = {
     mode: 'development',
+    output: {
+        publicPath: `${devHost}:${devPort}/`,
+    },
     devServer: {
         port: 8081,
         historyApiFallback: {
-            index: 'index.html',
+            index: '/index.html',
         },
-    }, plugins: [
+    },
+    plugins: [
         new ModuleFederationPlugin({
             name: 'marketing',
             filename: 'remoteEntry.js',
@@ -21,9 +28,9 @@ const devConfig = {
             shared: pjs.dependencies,
         }),
         new HtmlWebpackPlugin({
-            template:
-                './public/index.html',
-        })],
+            template: './public/index.html',
+        }),
+    ],
 }
 
 module.exports = merge(commonWebpackConfig, devConfig)

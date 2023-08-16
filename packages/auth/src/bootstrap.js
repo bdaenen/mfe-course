@@ -3,17 +3,17 @@ import ReactDOM from 'react-dom'
 import { createMemoryHistory, createBrowserHistory } from 'history'
 import App from './App'
 
-export function mount(el, { onNavigate, history = null, initialLocation }) {
+export function mount(el, { onNavigate, history = null, initialLocation, onSignIn}) {
     if (!history) {
         history = createMemoryHistory({
-            initialEntries: [initialLocation]
+            initialEntries: [initialLocation],
         })
     }
     if (onNavigate) {
         history.listen(onNavigate)
     }
 
-    ReactDOM.render(<App history={history} />, el)
+    ReactDOM.render(<App history={history} onSignIn={onSignIn} />, el)
 
     return {
         onParentNavigate(nextLocation) {
@@ -35,7 +35,7 @@ export function mount(el, { onNavigate, history = null, initialLocation }) {
 }
 
 if (process.env.NODE_ENV !== 'production') {
-    const el = document.getElementById('__marketing-dev-root')
+    const el = document.getElementById('__auth-dev-root')
     if (el) {
         mount(el, { history: createBrowserHistory() })
     }

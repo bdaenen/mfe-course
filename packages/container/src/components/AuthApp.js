@@ -1,8 +1,8 @@
-import { mount } from 'marketing/MarketingApp'
+import { mount } from 'auth/AuthApp'
 import React, { useRef, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
-export default function MarketingAppWrapper() {
+export default function AuthAppWrapper({onSignIn}) {
     const ref = useRef(null)
     const history = useHistory()
 
@@ -23,7 +23,8 @@ export default function MarketingAppWrapper() {
                     history.push(nextLocation)
                 }
             },
-            initialLocation: history.location
+            initialLocation: history.location,
+            onSignIn
         })
 
         history.listen(mountedApp.onParentNavigate)
